@@ -34,9 +34,9 @@ def get_vector_layer_attrs(vector_layer):
 
 
 if __name__ == '__main__':
-    # tif_path = r"F:\Work\面状图斑\15_新\小数据\tif\0_0.tif"
-    # tif_layer = read_raster_file(tif_path)
-    # get_raster_layer_attrs(tif_layer)
+    tif_path = r"F:\Work\面状图斑\15_新\小数据\tif\0_0.tif"
+    tif_layer = read_raster_file(tif_path)
+    get_raster_layer_attrs(tif_layer)
 
     shp_path = r"F:\Work\面状图斑\15_新\小数据\shp\0_0.shp"
     shp_layer = read_vector_file(shp_path)
