@@ -7,20 +7,20 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("My App")
-        self.label = QLabel()
+        self.label = QLabel("Click in this window")
+        self.setCentralWidget(self.label)
 
-        self.input = QLineEdit()
-        self.input.textChanged.connect(self.label.setText)
+    def mouseMoveEvent(self, a0):
+        self.label.setText("mouseMoveEvent")
 
-        layout = QVBoxLayout()
-        layout.addWidget(self.input)
-        layout.addWidget(self.label)
+    def mousePressEvent(self, a0):
+        self.label.setText("mousePressEvent")
 
-        container = QWidget()
-        container.setLayout(layout)
+    def mouseReleaseEvent(self, a0):
+        self.label.setText("mouseReleaseEvent")
 
-        self.setCentralWidget(container)
+    def mouseDoubleClickEvent(self, a0):
+        self.label.setText("mouseDoubleClickEvent")
 
 
 if __name__ == '__main__':
