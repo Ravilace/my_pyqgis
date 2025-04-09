@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2025/4/9 15:23
+# @Author  : Ravilace
+# @File    : signal_practice.py
+# @Software: PyCharm
 import sys
-
-from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 
 
@@ -9,10 +12,15 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("My App")
-        button = QPushButton("Press Me!")
 
-        self.setFixedSize(QSize(400, 300))
+        button = QPushButton("Press Me!")
+        button.setCheckable(True)
+        button.clicked.connect(self.the_button_was_clicked)
+
         self.setCentralWidget(button)
+
+    def the_button_was_clicked(self):
+        print("Clicked")
 
 
 if __name__ == '__main__':
