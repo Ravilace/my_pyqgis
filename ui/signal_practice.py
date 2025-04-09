@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMenu, QAction
 
 import sys
 
@@ -7,20 +7,13 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.label = QLabel("Click in this window")
-        self.setCentralWidget(self.label)
+    def contextMenuEvent(self, event):
+        context = QMenu(self)
+        context.addAction(QAction("test1", self))
+        context.addAction(QAction("test2", self))
+        context.addAction(QAction("test3", self))
 
-    def mouseMoveEvent(self, a0):
-        self.label.setText("mouseMoveEvent")
-
-    def mousePressEvent(self, a0):
-        self.label.setText("mousePressEvent")
-
-    def mouseReleaseEvent(self, a0):
-        self.label.setText("mouseReleaseEvent")
-
-    def mouseDoubleClickEvent(self, a0):
-        self.label.setText("mouseDoubleClickEvent")
+        context.exec(event.globalPos())
 
 
 if __name__ == '__main__':
