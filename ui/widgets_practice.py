@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QSpinBox
 
 
 class MainWindow(QMainWindow):
@@ -8,31 +8,25 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("My App")
 
-        widget = QLineEdit()
-        # widget.setMaxLength(10)
-        widget.setInputMask('000.000.000.000;_')
-        widget.setPlaceholderText("Enter your text")
+        widget = QSpinBox()
 
-        widget.returnPressed.connect(self.return_pressed)
-        widget.selectionChanged.connect(self.selection_changed)
-        widget.textChanged.connect(self.text_changed)
-        widget.textEdited.connect(self.text_edited)
+        widget.setMinimum(-10)
+        widget.setMaximum(3)
+
+        widget.setPrefix("$")
+        widget.setSuffix("c")
+        widget.setSingleStep(3)
+        widget.valueChanged.connect(self.value_changed)
+        widget.textChanged.connect(self.value_changed_str)
 
         self.setCentralWidget(widget)
 
-    def return_pressed(self):
-        print("Return pressed!")
+    def value_changed(self, i):
+        print(f"{i=}")
 
-    def selection_changed(self):
-        print("Selection changed")
+    def value_changed_str(self, s):
+        print(f"{s=}")
 
-    def text_changed(self, s):
-        print("Text changed...")
-        print(s)
-
-    def text_edited(self, s):
-        print("Text edited...")
-        print(s)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
