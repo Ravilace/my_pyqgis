@@ -1,7 +1,6 @@
 import sys
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QMainWindow, QCheckBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox
 
 
 class MainWindow(QMainWindow):
@@ -9,14 +8,19 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("My App")
 
-        widget = QCheckBox("This is a checkbox")
-        widget.setCheckState(Qt.PartiallyChecked)
+        widget = QComboBox()
+        widget.addItems(["One", "Two", "Three"])
 
-        widget.stateChanged.connect(self.show_state)
+        widget.currentIndexChanged.connect(self.index_changed)
+        widget.currentTextChanged.connect(self.text_changed)
+        # widget.setEditable(True)
+
         self.setCentralWidget(widget)
 
-    def show_state(self, s):
-        print(s == Qt.Checked)
+    def index_changed(self, i):
+        print(i)
+
+    def text_changed(self, s):
         print(s)
 
 
