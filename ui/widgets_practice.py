@@ -9,7 +9,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("My App")
 
         widget = QLineEdit()
-        widget.setMaxLength(10)
+        # widget.setMaxLength(10)
+        widget.setInputMask('000.000.000.000;_')
         widget.setPlaceholderText("Enter your text")
 
         widget.returnPressed.connect(self.return_pressed)
