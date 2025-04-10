@@ -1,6 +1,7 @@
 import sys
 
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
 
 class MainWindow(QMainWindow):
@@ -14,6 +15,7 @@ class MainWindow(QMainWindow):
         font.setPointSize(30)
         widget.setFont(font)
         widget.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+        widget.setPixmap(QPixmap('otje.png'))
 
         self.setCentralWidget(widget)
 
