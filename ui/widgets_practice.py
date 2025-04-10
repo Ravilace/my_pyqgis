@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QComboBox, QListWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit
 
 
 class MainWindow(QMainWindow):
@@ -8,18 +8,29 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("My App")
 
-        widget = QListWidget()
-        widget.addItems(["One", "Two", "Three"])
+        widget = QLineEdit()
+        widget.setMaxLength(10)
+        widget.setPlaceholderText("Enter your text")
 
-        widget.currentItemChanged.connect(self.index_changed)
-        widget.currentTextChanged.connect(self.text_changed)
+        widget.returnPressed.connect(self.return_pressed)
+        widget.selectionChanged.connect(self.selection_changed)
+        widget.textChanged.connect(self.text_changed)
+        widget.textEdited.connect(self.text_edited)
 
         self.setCentralWidget(widget)
 
-    def index_changed(self, i):
-        print(i.text())
+    def return_pressed(self):
+        print("Return pressed!")
+
+    def selection_changed(self):
+        print("Selection changed")
 
     def text_changed(self, s):
+        print("Text changed...")
+        print(s)
+
+    def text_edited(self, s):
+        print("Text edited...")
         print(s)
 
 if __name__ == '__main__':
