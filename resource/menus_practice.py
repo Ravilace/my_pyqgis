@@ -29,6 +29,7 @@ class MainWindow(QMainWindow):
         button_action.setStatusTip("This is your button")
         button_action.triggered.connect(self.toolbar_button_clicked)
         button_action.setCheckable(True)
+        button_action.setShortcut(QKeySequence("Ctrl+p"))
         toolbar.addAction(button_action)
 
         toolbar.addSeparator()
@@ -63,3 +64,4 @@ if __name__ == '__main__':
     window.show()
 
     app.exec()
+
