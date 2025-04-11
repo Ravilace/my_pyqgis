@@ -39,6 +39,9 @@ class MainWindow(QMainWindow):
         layout1.addWidget(Color("green"))
         layout1.addLayout(layout3)
 
+        layout1.setContentsMargins(0, 0, 0,  0)
+        layout1.setSpacing(20)
+
         widget = QWidget()
         widget.setLayout(layout1)
         self.setCentralWidget(widget)
