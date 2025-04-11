@@ -4,7 +4,7 @@
 # @File    : layouts_practice.py
 # @Software: PyCharm
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QStackedLayout
 from PyQt5.QtGui import QPalette, QColor
 
 
@@ -24,11 +24,13 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("My App")
 
-        layout = QGridLayout()
-        layout.addWidget(Color('red'), 0, 3)
-        layout.addWidget(Color('green'), 1, 1)
-        layout.addWidget(Color('blue'), 3, 0)
-        layout.addWidget(Color('orange'), 2, 2)
+        layout = QStackedLayout()
+        layout.addWidget(Color('red'))
+        layout.addWidget(Color('green'))
+        layout.addWidget(Color('blue'))
+        layout.addWidget(Color('orange'))
+
+        layout.setCurrentIndex(3)
 
         widget = QWidget()
         widget.setLayout(layout)
