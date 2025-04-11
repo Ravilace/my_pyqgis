@@ -5,7 +5,7 @@
 # @Software: PyCharm
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QStackedLayout, \
-    QPushButton
+    QPushButton, QTabWidget
 from PyQt5.QtGui import QPalette, QColor
 
 
@@ -25,32 +25,14 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("My App")
 
-        page_layout = QVBoxLayout()
-        button_layout = QHBoxLayout()
-        self.stack_layout = QStackedLayout()
+        tabs = QTabWidget()
+        tabs.setTabPosition(QTabWidget.North)
+        tabs.setMovable(True)
 
-        page_layout.addLayout(button_layout)
-        page_layout.addLayout(self.stack_layout)
+        for n, color in enumerate(["red", "yellow", "green", "blue"]):
+            tabs.addTab(Color(color), color)
 
-        btn = QPushButton("red")
-        btn.pressed.connect(self.activate_tab_1)
-        button_layout.addWidget(btn)
-        self.stack_layout.addWidget(Color("red"))
-
-        btn = QPushButton("green")
-        btn.pressed.connect(self.activate_tab_2)
-        button_layout.addWidget(btn)
-        self.stack_layout.addWidget(Color("green"))
-
-        btn = QPushButton("yellow")
-        btn.pressed.connect(self.activate_tab_3)
-        button_layout.addWidget(btn)
-        self.stack_layout.addWidget(Color("yellow"))
-
-        widget = QWidget()
-        widget.setLayout(page_layout)
-
-        self.setCentralWidget(widget)
+        self.setCentralWidget(tabs)
 
     def activate_tab_1(self):
         self.stack_layout.setCurrentIndex(0)
