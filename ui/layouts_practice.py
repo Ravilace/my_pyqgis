@@ -4,7 +4,7 @@
 # @File    : layouts_practice.py
 # @Software: PyCharm
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout
 from PyQt5.QtGui import QPalette, QColor
 
 
@@ -24,7 +24,13 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("My App")
 
-        widget = Color("red")
+        layout = QVBoxLayout()
+        layout.addWidget(Color("red"))
+        layout.addWidget(Color("green"))
+        layout.addWidget(Color("blue"))
+
+        widget = QWidget()
+        widget.setLayout(layout)
         self.setCentralWidget(widget)
 
 
