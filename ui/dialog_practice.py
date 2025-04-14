@@ -1,24 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, QDialogButtonBox, QVBoxLayout, QLabel
-
-
-class CustomDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-        self.setWindowTitle("Hello!")
-
-        QBtn = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
-
-        self.buttonBox = QDialogButtonBox(QBtn)
-        self.buttonBox.accepted.connect(self.accept)
-        self.buttonBox.rejected.connect(self.reject)
-
-        layout = QVBoxLayout()
-        message = QLabel("Something happened, is than OK?")
-        layout.addWidget(message)
-        layout.addWidget(self.buttonBox)
-        self.setLayout(layout)
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, QDialogButtonBox, QVBoxLayout, QLabel, \
+    QMessageBox
 
 
 class MainWindow(QMainWindow):
@@ -32,15 +14,15 @@ class MainWindow(QMainWindow):
 
         self.setCentralWidget(button)
 
+    def button_clicked(self):
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("I have a question!")
+        dlg.setText("This is a simple dialog")
+        button = dlg.exec()
 
-    def button_clicked(self, s):
-        print("Click", s)
+        if button == QMessageBox.Ok:
+            print("Ok!")
 
-        dlg = CustomDialog(self)
-        if dlg.exec():
-            print("Success!")
-        else:
-            print("Cancel!")
 
 
 if __name__ == '__main__':
