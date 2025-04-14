@@ -15,18 +15,16 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(button)
 
     def button_clicked(self):
-        dlg = QMessageBox(self)
-        dlg.setWindowTitle("I have a question!")
-        dlg.setText("This is a simple dialog")
-        dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-        dlg.setIcon(QMessageBox.Question)
-        button = dlg.exec()
+        button = QMessageBox.question(
+            self,
+            "Question dialog",
+            "The longer message"
+        )
 
-        if button == QMessageBox.Yes:
-            print("Ok!")
+        if button == QMessageBox.StandardButton.Yes:
+            print("Yes!")
         else:
             print("No!")
-
 
 
 if __name__ == '__main__':
