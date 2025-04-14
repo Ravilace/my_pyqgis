@@ -15,16 +15,20 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(button)
 
     def button_clicked(self):
-        button = QMessageBox.question(
+        button = QMessageBox.critical(
             self,
-            "Question dialog",
-            "The longer message"
+            "Oh dear!",
+            "Something went very wrong.",
+            buttons=QMessageBox.Discard | QMessageBox.NoToAll | QMessageBox.Ignore,
+            defaultButton=QMessageBox.Discard,
         )
 
-        if button == QMessageBox.StandardButton.Yes:
-            print("Yes!")
+        if button == QMessageBox.Discard:
+            print("Discard!")
+        elif button == QMessageBox.NoToAll:
+            print("No to all!")
         else:
-            print("No!")
+            print("Ignore!")
 
 
 if __name__ == '__main__':
